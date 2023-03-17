@@ -405,7 +405,7 @@ const exportData = async (
     rowToPasteData[indx] += data.data.length + 3;
   });
 
-  // Resize columns and set number styles to amount
+  // Resize columns and format all numbers to amount
   worksheet.columns.forEach((column) => {
     const lengths: number[] = [];
     if (column.eachCell) {
@@ -425,8 +425,6 @@ const exportData = async (
       column.width = lengths.reduce((p, c) => (p > c ? p : c));
     }
   });
-
-  // turn all numbers to amount
 
   // Write to and Open Workbook
   await workbook.xlsx.writeFile(BUDGET_FILE);
